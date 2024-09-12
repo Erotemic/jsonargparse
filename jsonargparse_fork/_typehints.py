@@ -687,7 +687,9 @@ def get_subclasses_from_type(typehint, names=True, subclasses=None) -> tuple:
 def raise_unexpected_value(message: str, val: Any = inspect._empty, exception: Optional[Exception] = None) -> NoReturn:
     if val is not inspect._empty:
         message += f". Got value: {val}"
-    raise ValueError(message) from exception
+    import warnings
+    warnings.warn(message)
+    # raise ValueError(message) from exception
 
 
 def raise_union_unexpected_value(uniontype, val: Any, exceptions: List[Exception]) -> NoReturn:

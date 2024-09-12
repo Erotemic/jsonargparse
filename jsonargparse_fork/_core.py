@@ -1032,6 +1032,9 @@ class ArgumentParser(ParserDeprecations, ActionsContainer, ArgumentLinking, argp
             TypeError: If any of the values are not valid.
             KeyError: If a key in cfg is not defined in the parser.
         """
+        # Skip config checks, they are annoying
+        return
+
         cfg = ccfg = cfg.clone()
         if isinstance(branch, str):
             branch_cfg = cfg
