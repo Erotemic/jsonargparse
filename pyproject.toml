@@ -2,7 +2,7 @@
 requires = ["setuptools>=65.6.3", "wheel>=0.38.4"]
 
 [project]
-name = "jsonargparse"
+name = "jsonargparse_fork"
 dynamic = ["version"]
 description = "Implement minimal boilerplate CLIs derived from type hints and parse from command line, config files and environment variables."
 authors = [
@@ -36,18 +36,18 @@ dependencies = [
 
 [project.optional-dependencies]
 all = [
-    "jsonargparse[signatures]",
-    "jsonargparse[jsonschema]",
-    "jsonargparse[jsonnet]",
-    "jsonargparse[urls]",
-    "jsonargparse[fsspec]",
-    "jsonargparse[ruyaml]",
-    "jsonargparse[omegaconf]",
-    "jsonargparse[typing-extensions]",
-    "jsonargparse[reconplogger]",
+    "jsonargparse_fork[signatures]",
+    "jsonargparse_fork[jsonschema]",
+    "jsonargparse_fork[jsonnet]",
+    "jsonargparse_fork[urls]",
+    "jsonargparse_fork[fsspec]",
+    "jsonargparse_fork[ruyaml]",
+    "jsonargparse_fork[omegaconf]",
+    "jsonargparse_fork[typing-extensions]",
+    "jsonargparse_fork[reconplogger]",
 ]
 signatures = [
-    "jsonargparse[typing-extensions]",
+    "jsonargparse_fork[typing-extensions]",
     "docstring-parser>=0.15",
     "typeshed-client>=2.1.0",
 ]
@@ -84,9 +84,9 @@ reconplogger = [
     "reconplogger>=4.4.0",
 ]
 test = [
-    "jsonargparse[test-no-urls]",
-    "jsonargparse[shtab]",
-    "jsonargparse[argcomplete]",
+    "jsonargparse_fork[test-no-urls]",
+    "jsonargparse_fork[shtab]",
+    "jsonargparse_fork[argcomplete]",
     "types-PyYAML>=6.0.11",
     "types-requests>=2.28.9",
     "responses>=0.12.0",
@@ -98,14 +98,14 @@ test-no-urls = [
     "pytest-subtests>=0.8.0",
 ]
 coverage = [
-    "jsonargparse[test-no-urls]",
+    "jsonargparse_fork[test-no-urls]",
     "pytest-cov>=4.0.0",
 ]
 dev = [
-    "jsonargparse[test]",
-    "jsonargparse[coverage]",
-    "jsonargparse[doc]",
-    "jsonargparse[mypy]",
+    "jsonargparse_fork[test]",
+    "jsonargparse_fork[coverage]",
+    "jsonargparse_fork[doc]",
+    "jsonargparse_fork[mypy]",
     "pre-commit>=2.19.0",
     "tox>=3.25.0",
     "build>=0.10.0",
@@ -135,15 +135,15 @@ Codecov = "https://codecov.io/gh/omni-us/jsonargparse"
 
 [tool.setuptools]
 platforms = ["Any"]
-packages = ["jsonargparse", "jsonargparse_tests"]
+packages = ["jsonargparse_fork", "jsonargparse_tests"]
 
 
 [tool.setuptools.dynamic]
-version = {attr = "jsonargparse.__version__"}
+version = {attr = "jsonargparse_fork.__version__"}
 
 
 [tool.setuptools.package-data]
-jsonargparse = ["py.typed"]
+jsonargparse_fork = ["py.typed"]
 
 
 [tool.pytest.ini_options]
@@ -152,7 +152,7 @@ testpaths = ["jsonargparse_tests"]
 
 
 [tool.coverage.run]
-source = ["jsonargparse"]
+source = ["jsonargparse_fork"]
 
 
 [tool.mypy]

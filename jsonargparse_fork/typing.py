@@ -342,7 +342,7 @@ def get_registered_type(type_class) -> Optional[RegisteredType]:
 def add_type(type_class: Type, uniqueness_key: Optional[Tuple], type_check: Optional[Callable] = None):
     assert uniqueness_key not in registered_types
     if type_class.__name__ in globals():
-        raise ValueError(f'Type name "{type_class.__name__}" clashes with name already defined in jsonargparse.typing.')
+        raise ValueError(f'Type name "{type_class.__name__}" clashes with name already defined in jsonargparse_fork.typing.')
     globals()[type_class.__name__] = type_class
     kwargs = {"uniqueness_key": uniqueness_key}
     if type_check is not None:

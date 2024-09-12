@@ -512,7 +512,7 @@ class ParserDeprecations:
         if error_handler is not False:
             stacklevel = 2
             stack = inspect.stack()[1]
-            if stack.filename.endswith("jsonargparse/_deprecated.py"):
+            if stack.filename.endswith("jsonargparse_fork/_deprecated.py"):
                 stacklevel = 5
             deprecation_warning_error_handler(stacklevel)
         if callable(error_handler) or error_handler in {None, False}:
@@ -525,7 +525,7 @@ ParserError = ArgumentError
 
 
 def deprecated_module(module_name, mappings=None):
-    module_path = f"jsonargparse.{module_name}"
+    module_path = f"jsonargparse_fork.{module_name}"
     module = ModuleType(module_path, f"deprecated {module_path}")
     sys.modules[module_path] = module
 
@@ -541,7 +541,7 @@ def deprecated_module(module_name, mappings=None):
         new_module = f"_{module_name}"
         if mappings and name in mappings:
             new_module, name = mappings[name]
-        return getattr(import_module(f"jsonargparse.{new_module}"), name)
+        return getattr(import_module(f"jsonargparse_fork.{new_module}"), name)
 
     module.__getattr__ = __getattr__
     module.__dict__["__file__"] = str(Path(__file__).parent / f"{module_name}.py")

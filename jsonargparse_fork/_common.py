@@ -169,7 +169,7 @@ def get_class_instantiator() -> InstantiatorCallable:
 # logging
 
 logging_levels = {"CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"}
-null_logger = logging.getLogger("jsonargparse_null_logger")
+null_logger = logging.getLogger("jsonargparse_fork_null_logger")
 null_logger.addHandler(logging.NullHandler())
 null_logger.parent = None
 

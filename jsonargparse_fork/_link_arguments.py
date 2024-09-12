@@ -208,7 +208,7 @@ class ActionLink(Action):
         else:
             type_attr = getattr(self.target[1], "_typehint", self.target[1].type)
             help_str = self.target[1].help
-            if help_str == import_module("jsonargparse._formatters").empty_help:
+            if help_str == import_module("jsonargparse_fork._formatters").empty_help:
                 help_str = f"Target argument '{self.target[1].dest}' lacks type and help"
 
         super().__init__(

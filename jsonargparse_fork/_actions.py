@@ -505,7 +505,7 @@ class ActionParser:
             ValueError: If the parser parameter is invalid.
         """
         self._parser = parser
-        if not isinstance(self._parser, import_object("jsonargparse.ArgumentParser")):
+        if not isinstance(self._parser, import_object("jsonargparse_fork.ArgumentParser")):
             raise ValueError("Expected parser keyword argument to be an ArgumentParser.")
 
     @staticmethod

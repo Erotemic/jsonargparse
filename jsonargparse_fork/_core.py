@@ -250,7 +250,7 @@ class ArgumentParser(ParserDeprecations, ActionsContainer, ArgumentLinking, argp
         """Raises NotImplementedError to dissuade its use, since typos in configs would go unnoticed."""
         caller_mod = inspect.getmodule(inspect.stack()[1][0])
         caller = None if caller_mod is None else caller_mod.__package__
-        if caller not in {"jsonargparse", "argcomplete"}:
+        if caller not in {"jsonargparse", "jsonargparse_fork", "argcomplete"}:
             raise NotImplementedError(
                 "parse_known_args not implemented to dissuade its use, since typos in configs would go unnoticed."
             )

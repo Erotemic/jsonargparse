@@ -55,7 +55,7 @@ def get_files_completer():
 
 def argcomplete_namespace(caller, parser, namespace):
     if caller == "argcomplete":
-        namespace.__class__ = __import__("jsonargparse").Namespace
+        namespace.__class__ = __import__("jsonargparse_fork").Namespace
         namespace = parser.merge_config(parser.get_defaults(skip_check=True), namespace).as_flat()
     return namespace
 
@@ -175,9 +175,9 @@ def shtab_prepare_action(action, parser) -> None:
         action.choices = choices
 
 
-bash_compgen_typehint_name = "_jsonargparse_%s_compgen_typehint"
+bash_compgen_typehint_name = "_jsonargparse_fork_%s_compgen_typehint"
 bash_compgen_typehint = """
-_jsonargparse_%%s_matched_choices() {
+_jsonargparse_fork_%%s_matched_choices() {
   local TOTAL=$(echo "$1" | wc -w | tr -d " ")
   if [ "$TOTAL" != 0 ]; then
     local MATCH=$(echo "$2" | wc -w | tr -d " ")
@@ -188,14 +188,14 @@ _jsonargparse_%%s_matched_choices() {
   local MATCH=( $(IFS=" " compgen -W "$1" "$2") )
   if [ ${#MATCH[@]} = 0 ]; then
     if [ "$COMP_TYPE" = 63 ]; then
-      MATCHED=$(_jsonargparse_%%s_matched_choices "$1" "${MATCH[*]}")
+      MATCHED=$(_jsonargparse_fork_%%s_matched_choices "$1" "${MATCH[*]}")
       printf "%(b)s\\n$3$MATCHED\\n%(n)s" >&2
       kill -WINCH $$
     fi
   else
     IFS=" " compgen -W "$1" "$2"
     if [ "$COMP_TYPE" = 63 ]; then
-      MATCHED=$(_jsonargparse_%%s_matched_choices "$1" "${MATCH[*]}")
+      MATCHED=$(_jsonargparse_fork_%%s_matched_choices "$1" "${MATCH[*]}")
       printf "%(b)s\\n$3$MATCHED%(n)s" >&2
     fi
   fi
@@ -210,7 +210,7 @@ _jsonargparse_%%s_matched_choices() {
 def add_bash_typehint_completion(parser, action, message, choices) -> None:
     fn_typehint = norm_name(bash_compgen_typehint_name % shtab_prog.get())
     fn_name = parser.prog.replace(" [options] ", "_")
-    fn_name = norm_name(f"_jsonargparse_{fn_name}_{action.dest}_typehint")
+    fn_name = norm_name(f"_jsonargparse_fork_{fn_name}_{action.dest}_typehint")
     fn = '%(fn_name)s(){ %(fn_typehint)s "%(choices)s" "$1" "%(message)s"; }' % {
         "fn_name": fn_name,
         "fn_typehint": fn_typehint,
